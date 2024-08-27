@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry";
-import { Font, FontLoader } from "three/examples/jsm/loaders/FontLoader";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry.js";
+import { Font, FontLoader } from "three/examples/jsm/loaders/FontLoader.js";
 import { onMounted, ref, watchEffect } from "vue";
 import {
   addDirectionLight,
@@ -15,7 +15,7 @@ import {
   updateCameraPosition,
 } from "./util";
 
-const container = ref(null);
+const container = ref<HTMLDivElement | null>(null);
 
 const props = defineProps<{
   text: string;
@@ -94,7 +94,7 @@ watchEffect(async () => {
   // 文字間隔を固定する為、textが10文字以下の場合は空文字で埋める
   createText(formatText(props), props.displayMethod);
   // DOMにレンダラーを追加
-  container.value?.appendChild(renderer.domElement);
+  container.value!.appendChild(renderer.domElement);
   // 文字数とdisplayMethodに合わせてカメラの位置変更
   updateCameraPosition(props.text.length, props.displayMethod, camera);
 });

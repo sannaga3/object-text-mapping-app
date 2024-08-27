@@ -1,6 +1,6 @@
 <!-- １文字ずつ３Dテキストで表示できない為、一旦お蔵入り パターン1 -->
 
-<script setup lang="ts">
+<!-- <script setup lang="ts">
 import { ref, watch, computed } from "vue";
 import { Text3D } from "@tresjs/cientos";
 
@@ -37,7 +37,7 @@ watch(
       </Text3D>
     </div>
   </Suspense>
-</template>
+</template> -->
 
 <!-- パターン2 -->
 <!-- <script setup lang="ts">

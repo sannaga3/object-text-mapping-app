@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<!-- <script setup lang="ts">
 import { OrbitControls, Stars } from "@tresjs/cientos";
 import { TresCanvas, useRenderLoop } from "@tresjs/core";
 import { BasicShadowMap, NoToneMapping, SRGBColorSpace } from "three";
@@ -62,4 +62,4 @@ useRenderLoop().onLoop(({ delta }) => {
       <Stand />
     </TresCanvas>
   </div>
-</template>
+</template> -->

@@ -1,4 +1,4 @@
-<script setup>
+<!-- <script setup>
 import { GLTFModel } from "@tresjs/cientos";
 
 const ringUrl = "/public/ring.glb";
@@ -16,4 +16,4 @@ const ringUrl = "/public/ring.glb";
       :scale="2"
     />
   </Suspense>
-</template>
+</template> -->

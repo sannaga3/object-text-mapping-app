@@ -1,8 +1,8 @@
 import * as THREE from "three";
-import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry";
-import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
-import { GLTF, GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader";
+import { TextGeometry } from "three/addons/geometries/TextGeometry.js";
+import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
+import { GLTF, GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader.js";
 
 let table: THREE.Object3D | null = null;
 let background: THREE.DataTexture | null = null;
@@ -139,8 +139,8 @@ const loadModel = (scene: THREE.Scene, selectedRing: string) => {
     // 子オブジェクトを格納する配列を初期化
     const children: Array<THREE.Mesh> = [];
 
-    ring.traverse((child: THREE.Mesh) => {
-      if ((child as THREE.Mesh).isMesh) {
+    ring.traverse((child: THREE.Object3D) => {
+      if (child instanceof THREE.Mesh) {
         children.push(child as THREE.Mesh);
       }
     });
