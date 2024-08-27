@@ -4,6 +4,8 @@ import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
 import { GLTF, GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader.js";
 
+const baseURL = import.meta.env.VITE_BASE_URL;
+
 let table: THREE.Object3D | null = null;
 let background: THREE.DataTexture | null = null;
 
@@ -49,28 +51,31 @@ const loadEnvironment = (scene: THREE.Scene, isSetBackground: boolean) => {
   scene.add(mesh);
 
   const rgbeLoader = new RGBELoader();
-  rgbeLoader.load("aft_lounge_2k.hdr", function (texture: THREE.DataTexture) {
-    texture.mapping = THREE.EquirectangularReflectionMapping;
-    if (!background) background = texture;
+  rgbeLoader.load(
+    `${baseURL}/aft_lounge_2k.hdr`,
+    function (texture: THREE.DataTexture) {
+      texture.mapping = THREE.EquirectangularReflectionMapping;
+      if (!background) background = texture;
 
-    // シーンの背景と反射にHDR環境マップを使用、テーブルを追加
-    if (isSetBackground) {
-      scene.background = background;
-      if (!table) {
-        gltfLoader.load("/table.glb", (gltf: GLTF) => {
-          table = gltf.scene;
-          table!.scale.set(1, 1, 1);
-          scene.add(table as THREE.Object3D);
-        });
+      // シーンの背景と反射にHDR環境マップを使用、テーブルを追加
+      if (isSetBackground) {
+        scene.background = background;
+        if (!table) {
+          gltfLoader.load(`${baseURL}/table.glb`, (gltf: GLTF) => {
+            table = gltf.scene;
+            table!.scale.set(1, 1, 1);
+            scene.add(table as THREE.Object3D);
+          });
+        }
+      } else {
+        scene.background = null;
+        scene.remove(table as THREE.Object3D);
+        table = null;
       }
-    } else {
-      scene.background = null;
-      scene.remove(table as THREE.Object3D);
-      table = null;
-    }
 
-    scene.environment = texture;
-  });
+      scene.environment = texture;
+    }
+  );
 };
 
 const createCharMesh = (
@@ -133,7 +138,7 @@ const updateCameraPosition = (
 };
 
 const loadModel = (scene: THREE.Scene, selectedRing: string) => {
-  gltfLoader.load(`/ring_${selectedRing}.glb`, (gltf: GLTF) => {
+  gltfLoader.load(`${baseURL}/ring_${selectedRing}.glb`, (gltf: GLTF) => {
     const ring = gltf.scene;
 
     // 子オブジェクトを格納する配列を初期化

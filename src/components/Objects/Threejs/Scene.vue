@@ -94,7 +94,7 @@ watchEffect(async () => {
   // 文字間隔を固定する為、textが10文字以下の場合は空文字で埋める
   createText(formatText(props), props.displayMethod);
   // DOMにレンダラーを追加
-  container.value!.appendChild(renderer.domElement);
+  container.value?.appendChild(renderer.domElement);
   // 文字数とdisplayMethodに合わせてカメラの位置変更
   updateCameraPosition(props.text.length, props.displayMethod, camera);
 });

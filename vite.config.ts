@@ -9,7 +9,7 @@ export default defineConfig({
       ...templateCompilerOptions,
     }),
   ],
-  base: "/object-text-mapping-app/",
+  base: process.env.VITE_BASE_URL || "",
   build: {
     outDir: "docs",
   },
