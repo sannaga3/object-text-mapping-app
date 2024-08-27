@@ -9,6 +9,7 @@ export default defineConfig({
       ...templateCompilerOptions,
     }),
   ],
+  base: "/object-text-mapping-app/",
   build: {
     outDir: "docs",
   },
